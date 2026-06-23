@@ -4,17 +4,17 @@ export const projectsData: ProjectsData = {
   sectionTitle: 'Proyectos',
   sectionAccent: 'destacados',
   description:
-    'Sistemas empresariales complejos, integraciones de API de terceros y flujos de automatización que demuestran capacidades Full Stack y arquitectura de software.',
+    'Sistemas empresariales complejos, integraciones de API de terceros y flujos de automatización que demuestran capacidades Full Stack y diseño de arquitectura.',
   projects: [
     {
       id: 'proj-goodnight',
-      name: 'Goodnight Business Hub',
+      name: 'GoodNight Business Hub',
       description:
-        'Sistema centralizado de gestión comercial y ERP con números API de WhatsApp activos automatizando y asistiendo ventas reales en producción, integrando Alegra y tableros interactivos.',
+        'Plataforma integral empresarial diseñada para centralizar y automatizar los procesos comerciales, administrativos, de nómina y operativos en producción.',
       longDescription:
-        'Ecosistema corporativo robusto para optimizar operaciones. Cuenta con un dashboard de analíticas que expone KPIs financieros mediante un espejo local de facturación sincronizado con Alegra ERP. Integra múltiples números de la API oficial de Meta WhatsApp Cloud con flujos automáticos de calificación de prospectos, envío de campañas masivas y una bandeja multicanal en tiempo real para asesores. Adicionalmente, incluye un motor de cálculo de nómina basado en reportes de asistencia y un Vault con cifrado Fernet para almacenamiento seguro de credenciales de API.',
+        'Una solución empresarial robusta desarrollada en React y FastAPI. Integra módulos operativos clave: Comercial (ventas reales mediante Meta WhatsApp Cloud API), RRHH (directorio e importación de bases de datos), Nómina (cálculos automatizados de asistencia y quincenas) y Biblioteca Operativa. Cuenta con un espejo local de facturación sincronizado con Alegra ERP y seguridad por cifrado simétrico Fernet para las claves de API.',
       tags: ['Full Stack', 'Enterprise', 'Integration', 'DevOps'],
-      technologies: ['React', 'FastAPI', 'PostgreSQL', 'Docker', 'Meta WhatsApp API', 'Alegra API', 'GitHub Actions', 'Cryptography (Fernet)'],
+      technologies: ['React', 'FastAPI', 'PostgreSQL', 'Docker', 'Meta WhatsApp API', 'Alegra API', 'GitHub Actions', 'Fernet Cryptography'],
       status: 'completed',
       featured: true,
       links: [
@@ -25,59 +25,19 @@ export const projectsData: ProjectsData = {
         },
       ],
       imageSrc: '/images/projects/goodnight_dashboard.png',
-      imageAlt: 'Captura del panel de control de Goodnight Business Hub',
-    },
-    {
-      id: 'proj-voxinplant',
-      name: 'Voximplant Tools',
-      description:
-        'Conjunto de scripts en Python para procesar, consolidar y auditar reportes de llamadas generados por campañas de Voximplant. Automatiza tareas manuales y genera bases históricas fiables.',
-      longDescription:
-        'Desarrollo de utilidades automatizadas en Python destinadas a la extracción, limpieza, consolidación y auditoría de datos telefónicos a gran escala en campañas empresariales.',
-      tags: ['Automation', 'Backend', 'Integration'],
-      technologies: ['Python', 'Pandas', 'Voximplant API', 'CSV Processing'],
-      status: 'completed',
-      featured: true,
-      links: [
-        {
-          label: 'Código Fuente',
-          url: 'https://github.com/cristiannwtf1/voxinplant-tools',
-          icon: 'Github',
-        },
-      ],
-      imageSrc: '/images/projects/voximplant_automation.png',
-      imageAlt: 'Ilustración conceptual de automatizaciones backend con Python',
-    },
-    {
-      id: 'proj-quickcollect',
-      name: 'QuickCollect',
-      description:
-        'Plataforma interactiva orientada a la gestión, cobro y recaudación eficiente. Desarrollado como proyecto final de integración de servicios y lógica frontend/backend.',
-      longDescription:
-        'Aplicación web completa diseñada para optimizar los procesos de cobranza y agilizar la comunicación de pagos pendientes con clientes.',
-      tags: ['Full Stack', 'Frontend', 'Enterprise'],
-      technologies: ['JavaScript', 'HTML5', 'CSS3', 'Node.js', 'Express'],
-      status: 'completed',
-      featured: false,
-      links: [
-        {
-          label: 'Código Fuente',
-          url: 'https://github.com/cristiannwtf1/quickcollect',
-          icon: 'Github',
-        },
-      ],
+      imageAlt: 'Captura del panel de control de GoodNight Business Hub',
     },
     {
       id: 'proj-devage',
       name: 'DevAge Engine',
       description:
-        'Motor interactivo inspirado en mecánicas estratégicas orientadas a programadores (Age of Code) para simular y ejecutar lógicas secuenciales.',
+        'Motor de simulación estratégica en tiempo real desarrollado como proyecto personal. Implementa arquitectura ECS e inteligencia artificial.',
       longDescription:
-        'Un proyecto enfocado en algoritmos y simulación que permite correr lógicas de código para controlar unidades o automatizar flujos estratégicos.',
+        'Un motor interactivo inspirado en mecánicas estratégicas secuenciales (Age of Code) para desarrolladores. Implementa una arquitectura Entity Component System (ECS), algoritmos avanzados de inteligencia artificial, pathfinding para navegación en mapa de cuadrícula y comunicación bidireccional por WebSockets.',
       tags: ['Frontend', 'JavaScript', 'Logic'],
-      technologies: ['JavaScript', 'HTML5 Canvas', 'CSS Modules', 'Algorithm Design'],
+      technologies: ['JavaScript', 'HTML5 Canvas', 'WebSockets', 'ECS Architecture', 'Algorithm Design', 'Pathfinding'],
       status: 'completed',
-      featured: false,
+      featured: true,
       links: [
         {
           label: 'Código Fuente',
@@ -86,7 +46,26 @@ export const projectsData: ProjectsData = {
         },
       ],
       imageSrc: '/images/projects/devage_engine.png',
-      imageAlt: 'Interfaz de simulación lógica de DevAge Engine',
+      imageAlt: 'Simulación de algoritmos en DevAge Engine',
+    },
+    {
+      id: 'proj-quickcollect',
+      name: 'QuickCollect',
+      description:
+        'Proyecto orientado a la automatización de procesos empresariales y optimización en la gestión y cobro de cartera de clientes.',
+      longDescription:
+        'Aplicación web diseñada con el fin de automatizar la gestión y conciliación de cartera de clientes pendientes, optimizando la comunicación de cobro y facilitando flujos de recaudación eficientes.',
+      tags: ['Full Stack', 'Automation', 'Enterprise'],
+      technologies: ['JavaScript', 'Node.js', 'Express', 'SQL Databases', 'HTML5/CSS3'],
+      status: 'completed',
+      featured: true,
+      links: [
+        {
+          label: 'Código Fuente',
+          url: 'https://github.com/cristiannwtf1/quickcollect',
+          icon: 'Github',
+        },
+      ],
     },
   ],
 }
