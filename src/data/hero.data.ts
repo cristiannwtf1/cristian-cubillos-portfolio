@@ -11,6 +11,7 @@ export const heroData: HeroData = {
   ctaHref: '#projects',
   secondaryCtaLabel: 'Contáctame',
   secondaryCtaHref: '#contact',
+  cvUrl: '/CV_Cristian_Cubillos.pdf', // Se servirá desde public/
   socialLinks: [
     {
       platform: 'GitHub',
@@ -20,7 +21,7 @@ export const heroData: HeroData = {
     },
     {
       platform: 'LinkedIn',
-      url: 'https://linkedin.com/in/cristian-cubillos', // TODO: actualizar URL real de LinkedIn
+      url: 'https://linkedin.com/in/criscubillos',
       icon: 'Linkedin',
       ariaLabel: 'Perfil de LinkedIn de Cristian Cubillos',
     },

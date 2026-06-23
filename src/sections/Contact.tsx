@@ -24,12 +24,35 @@ const Contact: React.FC = () => {
     setSubmitStatus('idle')
 
     try {
-      // Simulate API form submission delay
-      await new Promise((resolve) => setTimeout(resolve, 1500))
-      console.log('Formulario de contacto enviado:', formData)
-      
-      setSubmitStatus('success')
-      setFormData({ name: '', email: '', subject: '', message: '' })
+      if (contactData.formActionUrl) {
+        // Real Formspree / API HTTP POST request
+        const response = await fetch(contactData.formActionUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            _subject: formData.subject,
+            message: formData.message,
+          }),
+        })
+
+        if (response.ok) {
+          setSubmitStatus('success')
+          setFormData({ name: '', email: '', subject: '', message: '' })
+        } else {
+          setSubmitStatus('error')
+        }
+      } else {
+        // Fallback simulate API form submission delay
+        await new Promise((resolve) => setTimeout(resolve, 1500))
+        console.log('Formulario de contacto enviado (simulado):', formData)
+        setSubmitStatus('success')
+        setFormData({ name: '', email: '', subject: '', message: '' })
+      }
     } catch (err) {
       setSubmitStatus('error')
     } finally {

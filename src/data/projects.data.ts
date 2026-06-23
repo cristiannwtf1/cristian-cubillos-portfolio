@@ -10,9 +10,9 @@ export const projectsData: ProjectsData = {
       id: 'proj-goodnight',
       name: 'Goodnight Business Hub',
       description:
-        'Sistema ERP/CRM empresarial que centraliza y automatiza la gestión operativa, facturación (Alegra API) y mensajería transaccional/masiva (Meta WhatsApp Cloud API).',
+        'Sistema centralizado de gestión comercial y ERP con números API de WhatsApp activos automatizando y asistiendo ventas reales en producción, integrando Alegra y tableros interactivos.',
       longDescription:
-        'Una plataforma robusta que actúa como el núcleo operativo de una marca comercial. Cuenta con un espejo local de datos sincronizado con el ERP (Alegra) mediante colas eficientes, una bandeja multicanal en tiempo real conectada a la API oficial de Meta WhatsApp, un módulo de nómina automatizado con motor de cálculos de asistencia, un portal de RRHH para carga de bases de datos operativas y un Vault empresarial con cifrado Fernet de nivel militar para credenciales de API críticas. Desplegado en producción en DigitalOcean a través de Docker y CI/CD automatizado.',
+        'Ecosistema corporativo robusto para optimizar operaciones. Cuenta con un dashboard de analíticas que expone KPIs financieros mediante un espejo local de facturación sincronizado con Alegra ERP. Integra múltiples números de la API oficial de Meta WhatsApp Cloud con flujos automáticos de calificación de prospectos, envío de campañas masivas y una bandeja multicanal en tiempo real para asesores. Adicionalmente, incluye un motor de cálculo de nómina basado en reportes de asistencia y un Vault con cifrado Fernet para almacenamiento seguro de credenciales de API.',
       tags: ['Full Stack', 'Enterprise', 'Integration', 'DevOps'],
       technologies: ['React', 'FastAPI', 'PostgreSQL', 'Docker', 'Meta WhatsApp API', 'Alegra API', 'GitHub Actions', 'Cryptography (Fernet)'],
       status: 'completed',
@@ -24,6 +24,8 @@ export const projectsData: ProjectsData = {
           icon: 'Layers',
         },
       ],
+      imageSrc: '/images/projects/goodnight_dashboard.png',
+      imageAlt: 'Captura del panel de control de Goodnight Business Hub',
     },
     {
       id: 'proj-voxinplant',
@@ -43,6 +45,8 @@ export const projectsData: ProjectsData = {
           icon: 'Github',
         },
       ],
+      imageSrc: '/images/projects/voximplant_automation.png',
+      imageAlt: 'Ilustración conceptual de automatizaciones backend con Python',
     },
     {
       id: 'proj-quickcollect',
@@ -81,6 +85,8 @@ export const projectsData: ProjectsData = {
           icon: 'Github',
         },
       ],
+      imageSrc: '/images/projects/devage_engine.png',
+      imageAlt: 'Interfaz de simulación lógica de DevAge Engine',
     },
   ],
 }

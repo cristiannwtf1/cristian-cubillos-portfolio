@@ -12,6 +12,6 @@ export const footerData: FooterData = {
   ],
   socialLinks: [
     { label: 'GitHub', href: 'https://github.com/cristiannwtf1' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/cristian-cubillos' }, // TODO: Actualizar si es necesario
+    { label: 'LinkedIn', href: 'https://linkedin.com/in/criscubillos' },
   ],
 }

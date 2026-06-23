@@ -26,4 +26,6 @@ export interface ContactData {
   methods: ContactMethod[]
   /** Whether a contact form is included */
   showForm: boolean
+  /** Optional form action endpoint (e.g., Formspree URL) */
+  formActionUrl?: string
 }

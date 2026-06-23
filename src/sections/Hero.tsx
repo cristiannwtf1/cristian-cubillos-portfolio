@@ -108,6 +108,17 @@ const Hero: React.FC = () => {
             >
               {heroData.secondaryCtaLabel}
             </a>
+            {heroData.cvUrl && (
+              <a
+                href={heroData.cvUrl}
+                download
+                id="hero-cta-cv"
+                className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl border border-zinc-800 bg-zinc-950 hover:bg-zinc-900 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/20 transition-all duration-300 hover:scale-[1.02]"
+              >
+                <LucideIcons.Download className="h-4 w-4" />
+                <span>Descargar CV</span>
+              </a>
+            )}
           </motion.div>
 
           {/* Social Links */}

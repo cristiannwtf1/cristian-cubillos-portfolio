@@ -30,6 +30,8 @@ export interface HeroData {
   secondaryCtaLabel: string
   /** Secondary CTA href */
   secondaryCtaHref: string
+  /** Optional URL for downloadable CV PDF */
+  cvUrl?: string
   /** Social links displayed in the hero */
   socialLinks: SocialLink[]
 }
