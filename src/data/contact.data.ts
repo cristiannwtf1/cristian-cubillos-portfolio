@@ -23,8 +23,8 @@ export const contactData: ContactData = {
     {
       type: 'github',
       label: 'GitHub',
-      value: 'github.com/cristian-cubillos', // TODO: Actualizar perfil real
-      href: 'https://github.com/cristian-cubillos',
+      value: 'github.com/cristiannwtf1',
+      href: 'https://github.com/cristiannwtf1',
       icon: 'Github',
     },
   ],

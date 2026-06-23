@@ -11,7 +11,7 @@ export const footerData: FooterData = {
     { label: 'Tecnologías', href: '#techstack' },
   ],
   socialLinks: [
-    { label: 'GitHub', href: 'https://github.com/cristian-cubillos' },
-    { label: 'LinkedIn', href: 'https://linkedin.com/in/cristian-cubillos' },
+    { label: 'GitHub', href: 'https://github.com/cristiannwtf1' },
+    { label: 'LinkedIn', href: 'https://linkedin.com/in/cristian-cubillos' }, // TODO: Actualizar si es necesario
   ],
 }

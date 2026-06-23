@@ -4,9 +4,9 @@ export const heroData: HeroData = {
   greeting: 'Hola, soy',
   name: 'Cristian Cubillos',
   title: 'Ingeniero de Sistemas',
-  subtitle: 'Full Stack Developer · Especialista en Soluciones Empresariales',
+  subtitle: 'Full Stack Developer · Automatización e Integración de Sistemas',
   description:
-    'Diseño y construyo sistemas robustos de automatización e integración que resuelven retos reales de negocio. Transformo complejidad en soluciones elegantes y escalables.',
+    'Especializado en diseñar arquitecturas de integración y automatizar tareas operativas complejas. Desarrollador de herramientas como voximplant-tools, motores lógicos e interfaces web empresariales.',
   ctaLabel: 'Ver proyectos',
   ctaHref: '#projects',
   secondaryCtaLabel: 'Contáctame',
@@ -14,13 +14,13 @@ export const heroData: HeroData = {
   socialLinks: [
     {
       platform: 'GitHub',
-      url: 'https://github.com/cristian-cubillos', // TODO: actualizar URL real
+      url: 'https://github.com/cristiannwtf1',
       icon: 'Github',
       ariaLabel: 'Perfil de GitHub de Cristian Cubillos',
     },
     {
       platform: 'LinkedIn',
-      url: 'https://linkedin.com/in/cristian-cubillos', // TODO: actualizar URL real
+      url: 'https://linkedin.com/in/cristian-cubillos', // TODO: actualizar URL real de LinkedIn
       icon: 'Linkedin',
       ariaLabel: 'Perfil de LinkedIn de Cristian Cubillos',
     },

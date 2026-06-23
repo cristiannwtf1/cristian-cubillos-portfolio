@@ -2,48 +2,66 @@ import type { ProjectsData } from '@/types'
 
 export const projectsData: ProjectsData = {
   sectionTitle: 'Proyectos',
-  sectionAccent: 'destacados',
+  sectionAccent: 'reales',
   description:
-    'Una selección de soluciones empresariales, herramientas de automatización e integraciones que he diseñado y desarrollado.',
+    'Proyectos y herramientas desarrolladas que resuelven problemas de automatización, lógica de software y procesamiento de datos.',
   projects: [
     {
-      id: 'proj-1',
-      name: 'Sistema de Integración ERP-CRM',
+      id: 'proj-voxinplant',
+      name: 'Voximplant Tools',
       description:
-        'Sincronización automatizada bidireccional de clientes, inventarios y órdenes de venta entre ERP empresarial y Salesforce.',
+        'Conjunto de scripts en Python para procesar, consolidar y auditar reportes de llamadas generados por campañas de Voximplant. Automatiza tareas manuales y genera bases históricas fiables.',
       longDescription:
-        'Diseño e implementación de un microservicio que orquesta colas de mensajes para sincronizar datos en tiempo real, garantizando consistencia y reduciendo la duplicación de datos.',
-      tags: ['Integration', 'Backend', 'Enterprise'],
-      technologies: ['Node.js', 'TypeScript', 'RabbitMQ', 'PostgreSQL', 'Salesforce API'],
+        'Desarrollo de utilidades automatizadas en Python destinadas a la extracción, limpieza, consolidación y auditoría de datos telefónicos a gran escala en campañas empresariales.',
+      tags: ['Automation', 'Backend', 'Integration'],
+      technologies: ['Python', 'Pandas', 'Voximplant API', 'CSV Processing'],
       status: 'completed',
       featured: true,
       links: [
         {
-          label: 'Código',
-          url: 'https://github.com/cristian-cubillos/erp-crm-integration',
+          label: 'Código Fuente',
+          url: 'https://github.com/cristiannwtf1/voxinplant-tools',
           icon: 'Github',
         },
       ],
     },
     {
-      id: 'proj-2',
-      name: 'Plataforma de Automatización de Reportes',
+      id: 'proj-quickcollect',
+      name: 'QuickCollect',
       description:
-        'Automatización del flujo de extracción, transformación y envío de reportes financieros mensuales para junta directiva.',
+        'Plataforma interactiva orientada a la gestión, cobro y recaudación eficiente. Desarrollado como proyecto final de integración de servicios y lógica frontend/backend.',
       longDescription:
-        'Scripting y flujos programados que extraen datos de múltiples bases de datos relacionales, generan hojas de cálculo formateadas y las envían automáticamente por correo cifrado.',
-      tags: ['Automation', 'Backend'],
-      technologies: ['Python', 'Pandas', 'PostgreSQL', 'Docker', 'AWS Lambda'],
+        'Aplicación web completa diseñada para optimizar los procesos de cobranza y agilizar la comunicación de pagos pendientes con clientes.',
+      tags: ['Full Stack', 'Frontend', 'Enterprise'],
+      technologies: ['JavaScript', 'HTML5', 'CSS3', 'Node.js', 'Express'],
       status: 'completed',
       featured: true,
       links: [
         {
-          label: 'Demo',
-          url: 'https://demo.ejemplo.com',
-          icon: 'ExternalLink',
+          label: 'Código Fuente',
+          url: 'https://github.com/cristiannwtf1/quickcollect',
+          icon: 'Github',
         },
       ],
     },
-    // TODO: Cristian, añade aquí tus proyectos reales
+    {
+      id: 'proj-devage',
+      name: 'DevAge Engine',
+      description:
+        'Motor interactivo inspirado en mecánicas estratégicas orientadas a programadores (Age of Code) para simular y ejecutar lógicas secuenciales.',
+      longDescription:
+        'Un proyecto enfocado en algoritmos y simulación que permite correr lógicas de código para controlar unidades o automatizar flujos estratégicos.',
+      tags: ['Frontend', 'JavaScript', 'Logic'],
+      technologies: ['JavaScript', 'HTML5 Canvas', 'CSS Modules', 'Algorithm Design'],
+      status: 'completed',
+      featured: true,
+      links: [
+        {
+          label: 'Código Fuente',
+          url: 'https://github.com/cristiannwtf1/devage-engine',
+          icon: 'Github',
+        },
+      ],
+    },
   ],
 }
