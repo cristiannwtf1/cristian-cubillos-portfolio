@@ -11,7 +11,7 @@ export const heroData: HeroData = {
   ctaHref: '#projects',
   secondaryCtaLabel: 'Contáctame',
   secondaryCtaHref: '#contact',
-  cvUrl: '/CV_Cristian_Cubillos.pdf', // Se servirá desde public/
+  cvUrl: '/HOJADEVIDA090126.pdf', // Vinculado a tu archivo real
   socialLinks: [
     {
       platform: 'GitHub',
