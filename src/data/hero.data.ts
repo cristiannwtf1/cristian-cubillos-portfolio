@@ -11,7 +11,7 @@ export const heroData: HeroData = {
   ctaHref: '#projects',
   secondaryCtaLabel: 'Contáctame',
   secondaryCtaHref: '#contact',
-  cvUrl: '/HOJADEVIDA090126.pdf', // Vinculado a tu archivo real
+  cvUrl: '#cv', // Cambiado para navegar a la nueva Hoja de Vida interactiva
   socialLinks: [
     {
       platform: 'GitHub',
