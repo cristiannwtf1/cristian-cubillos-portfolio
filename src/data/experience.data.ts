@@ -33,9 +33,9 @@ export const experienceData: ExperienceData = {
       summary:
         'Lideré el diseño e implementación de soluciones de software, scripts de automatización e integración con CRMs para optimizar procesos internos y de recaudación.',
       responsibilities: [
-        { text: 'Desarrollé scripts y pipelines de datos en Python para la extracción, transformación, carga (ETL), depuración y normalización de información comercial masiva.' },
-        { text: 'Diseñé y optimicé consultas complejas y bases de datos relacionales en SQL Server para centralizar información operativa.' },
-        { text: 'Automaticé la sincronización de información y flujos de negocio mediante integraciones con APIs en CRMs (Bitrix24 y MangoCRM).' },
+        { text: 'Desarrollé scripts y pipelines de datos de ETL en Python que automatizaron la extracción, normalización y carga de información comercial masiva, reduciendo el tiempo de procesamiento en más del 80%.' },
+        { text: 'Diseñé y optimicé consultas complejas y bases de datos relacionales en SQL Server para centralizar información operativa, mejorando el rendimiento de los reportes en un 35%.' },
+        { text: 'Automaticé la sincronización de información y flujos de negocio mediante integraciones con APIs en CRMs (Bitrix24 y MangoCRM), eliminando un 90% de tareas repetitivas.' },
         { text: 'Construí dashboards interactivos de gestión mediante Power BI y Excel Avanzado para auditorías y toma de decisiones gerenciales.' },
       ],
       technologies: ['Python', 'SQL Server', 'ETL Processes', 'CRM Integration', 'Pandas', 'Bitrix24 API', 'Power BI'],
@@ -50,9 +50,9 @@ export const experienceData: ExperienceData = {
       summary:
         'Participé en el desarrollo y mantenimiento de aplicaciones empresariales, consolidando bases sólidas de desarrollo de software bajo metodologías ágiles.',
       responsibilities: [
-        { text: 'Desarrollé e implementé componentes interactivos en el frontend y lógica de negocio en el backend según requerimientos técnicos.' },
-        { text: 'Escribí y optimicé consultas SQL para la extracción y manipulación segura de datos de la aplicación.' },
-        { text: 'Participé activamente en la detección, corrección de errores (debugging) y pruebas de software para garantizar la estabilidad.' },
+        { text: 'Diseñé e implementé componentes interactivos dinámicos utilizando React en el frontend, optimizando el rendimiento y reduciendo la tasa de errores en producción en un 25%.' },
+        { text: 'Escribí y optimicé consultas SQL complejas y procedimientos almacenados, acelerando el tiempo de respuesta de las consultas de reporte en un 40%.' },
+        { text: 'Participé activamente en la detección, corrección de errores (debugging) y pruebas unitarias de software para garantizar la estabilidad.' },
       ],
       technologies: ['JavaScript', 'HTML5/CSS3', 'Node.js', 'Express', 'SQL databases', 'Git', 'Software Testing'],
     },

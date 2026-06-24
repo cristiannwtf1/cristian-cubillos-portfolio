@@ -123,14 +123,16 @@ const Experience: React.FC = () => {
                     {item.summary}
                   </p>
 
-                  {/* Responsibilities list */}
-                  <ul className="space-y-2.5 mb-6 list-disc list-outside pl-4 text-xs sm:text-sm text-zinc-400 leading-relaxed font-sans">
-                    {item.responsibilities.map((resp, idx) => (
-                      <li key={idx} className="marker:text-brand-sky/60">
-                        {resp.text}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Responsibilities list (only for primary roles) */}
+                  {item.responsibilities.length > 0 && !['exp-emtelco', 'exp-gober', 'exp-tp'].includes(item.id) && (
+                    <ul className="space-y-2.5 mb-6 list-disc list-outside pl-4 text-xs sm:text-sm text-zinc-400 leading-relaxed font-sans">
+                      {item.responsibilities.map((resp, idx) => (
+                        <li key={idx} className="marker:text-brand-sky/60">
+                          {resp.text}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
 
                   {/* Technologies Badges */}
                   <div className="flex flex-wrap gap-1.5 pt-4 border-t border-zinc-900/80">

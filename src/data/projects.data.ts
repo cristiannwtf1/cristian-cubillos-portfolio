@@ -30,9 +30,14 @@ export const projectsData: ProjectsData = {
       featured: true,
       links: [
         {
-          label: 'Ver Detalles de Arquitectura',
+          label: 'Detalles de Arquitectura',
           url: '#experience',
           icon: 'Layers',
+        },
+        {
+          label: 'Código Privado (Confidencial)',
+          url: '#',
+          icon: 'Lock',
         },
       ],
       imageSrc: '/images/projects/goodnight_dashboard.png',

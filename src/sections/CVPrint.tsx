@@ -19,11 +19,15 @@ const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
     return method ? method.value : ''
   }
 
-  const displayedExperiences = cvType === 'completo'
-    ? experienceData.items
+  const primaryExperiences = cvType === 'completo'
+    ? experienceData.items.filter(item => !['exp-emtelco', 'exp-gober', 'exp-tp'].includes(item.id))
     : experienceData.items.filter(item =>
         ['exp-goodnight', 'exp-interia', 'exp-innovasoft', 'exp-groupcos'].includes(item.id)
       )
+
+  const secondaryExperiences = cvType === 'completo'
+    ? experienceData.items.filter(item => ['exp-emtelco', 'exp-gober', 'exp-tp'].includes(item.id))
+    : []
 
   const displayedEducation = cvType === 'completo'
     ? educationData.items
@@ -140,7 +144,7 @@ const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
             Experiencia Laboral
           </h3>
           <div className="space-y-8">
-            {displayedExperiences.map((item) => (
+            {primaryExperiences.map((item) => (
               <article key={item.id} className="page-break-avoid">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                   <h4 className="text-base font-bold text-white print:text-slate-900">
@@ -165,6 +169,35 @@ const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
                 </ul>
               </article>
             ))}
+
+            {/* Otras experiencias previas sin viñetas para el CV Completo */}
+            {secondaryExperiences.length > 0 && (
+              <div className="page-break-avoid border-t border-zinc-800/80 pt-6 mt-6 print:border-slate-200">
+                <h4 className="text-sm font-bold text-white print:text-slate-900 mb-3 uppercase tracking-wider">
+                  Otras experiencias previas (2016 - 2021)
+                </h4>
+                <div className="space-y-3 text-xs sm:text-sm text-zinc-400 print:text-slate-600">
+                  {secondaryExperiences.map((item) => (
+                    <div key={item.id} className="flex justify-between items-start gap-2">
+                      <div>
+                        <span className="font-bold text-zinc-300 print:text-slate-800">{item.role}</span>
+                        <span className="text-zinc-500"> · {item.company} {item.location && `· ${item.location}`}</span>
+                      </div>
+                      <span className="text-xs shrink-0 font-semibold text-emerald-400 print:text-slate-700">
+                        {item.startDate} - {item.endDate}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Nota de continuidad de una línea para el CV Ejecutivo */}
+            {cvType === 'ejecutivo' && (
+              <div className="page-break-avoid border-t border-zinc-800/80 pt-6 mt-4 print:border-slate-200 text-[11px] text-zinc-500 print:text-slate-600 italic">
+                * Otras experiencias previas en soporte y análisis de datos (2016 - 2022): Aprendiz IT en Jazzplat Colombia, Asesor de Soporte en Emtelco, Inspector de Datos en Gobernación de Cundinamarca y Analista de BackOffice en Teleperformance.
+              </div>
+            )}
           </div>
         </section>
 
