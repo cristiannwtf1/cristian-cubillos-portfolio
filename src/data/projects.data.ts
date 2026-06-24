@@ -74,21 +74,22 @@ export const projectsData: ProjectsData = {
       id: 'proj-quickcollect',
       name: 'QuickCollect',
       description:
-        'Aplicación web orientada a la automatización e integración de cobro y conciliación rápida de cartera de clientes.',
+        'Plataforma de pagos y suscripciones recurrentes desarrollada para automatizar el cobro y conciliación de servicios académicos y profesionales.',
       longDescription:
-        'Aplicación web de backend y scripts diseñada para automatizar la gestión y conciliación de cartera de clientes pendientes, optimizando la comunicación de cobro y facilitando flujos de recaudación eficientes.',
+        'Una solución integral diseñada para automatizar la facturación y el control de cobros recurrentes de la Universidad Compensar (2025). Cuenta con un backend modular para la gestión de usuarios y un dashboard analítico interactivo para el control financiero.',
       problemSolved:
-        'La gestión manual de cobros y el seguimiento individual de clientes morosos aumentaban el índice de cartera vencida y requerían un esfuerzo operativo ineficiente.',
+        'El procesamiento y conciliación manual de pagos escolares e institucionales generaba demoras administrativas y una alta tasa de morosidad por falta de notificaciones oportunas.',
       architecture:
-        'Integración directa con APIs de CRMs y bases de datos relacionales, scripts automatizados de procesamiento por lotes para facturas y conciliación de cartera.',
+        'Arquitectura desacoplada compuesta por una API REST construida con Django y Django REST Framework, y un cliente frontend tipo SPA interactivo desarrollado en React, Vite y Tailwind CSS, con reportes gráficos en Recharts.',
       modules: [
-        'Automatización de Cobros',
-        'Gestión de Cartera de Clientes',
-        'Integración CRM',
-        'Optimización de Procesos',
+        'Pasarela y Conciliación de Pagos',
+        'Gestión de Suscripciones y Planes',
+        'API REST de Clientes y Recaudaciones',
+        'Notificaciones Automáticas por Email',
+        'Dashboard Analítico de Métricas (Recharts)',
       ],
-      tags: ['Full Stack', 'Automation', 'Enterprise'],
-      technologies: ['Node.js', 'Express', 'SQL databases', 'Python Scripting', 'API Integration'],
+      tags: ['Full Stack', 'Django', 'React', 'Fintech'],
+      technologies: ['React', 'Django', 'Django REST Framework', 'Python', 'Tailwind CSS', 'Vite', 'Recharts', 'Formik/Yup'],
       status: 'completed',
       featured: true,
       links: [

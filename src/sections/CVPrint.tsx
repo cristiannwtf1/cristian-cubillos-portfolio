@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { aboutData, experienceData, contactData, techStackData, educationData, projectsData } from '@/data'
 import { IconRenderer } from '@/components'
 
@@ -7,6 +7,8 @@ interface CVPrintProps {
 }
 
 const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
+  const [cvType, setCvType] = useState<'completo' | 'ejecutivo'>('completo')
+
   const handlePrint = () => {
     window.print()
   }
@@ -17,18 +19,54 @@ const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
     return method ? method.value : ''
   }
 
+  const displayedExperiences = cvType === 'completo'
+    ? experienceData.items
+    : experienceData.items.filter(item =>
+        ['exp-goodnight', 'exp-interia', 'exp-innovasoft', 'exp-groupcos'].includes(item.id)
+      )
+
+  const displayedEducation = cvType === 'completo'
+    ? educationData.items
+    : educationData.items.filter(item =>
+        ['edu-compensar-ing', 'edu-compensar-tecno', 'edu-compensar-tec', 'cert-aws-cloud', 'cert-cisco-cyberops', 'cert-oracle-java-ai'].includes(item.id)
+      )
+
   return (
     <div className="min-h-screen bg-zinc-950 text-zinc-100 py-12 px-6 print:bg-white print:text-slate-900 print:py-0 print:px-0">
       
       {/* Action header toolbar (Invisible during printing) */}
-      <div className="max-w-4xl mx-auto mb-8 flex items-center justify-between no-print bg-zinc-900/50 p-4 rounded-2xl border border-zinc-800/80">
+      <div className="max-w-4xl mx-auto mb-8 flex flex-wrap items-center justify-between gap-4 no-print bg-zinc-900/50 p-4 rounded-2xl border border-zinc-800/80">
         <button
           onClick={onBack}
-          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all text-sm font-semibold"
+          className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all text-sm font-semibold cursor-pointer"
         >
           <IconRenderer name="ArrowLeft" className="h-4 w-4" />
           <span>Volver al Portafolio</span>
         </button>
+
+        {/* Version switcher */}
+        <div className="flex bg-zinc-950 p-1 rounded-xl border border-zinc-800 gap-1">
+          <button
+            onClick={() => setCvType('completo')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              cvType === 'completo'
+                ? 'bg-zinc-800 text-brand-sky'
+                : 'text-zinc-500 hover:text-zinc-300'
+            }`}
+          >
+            CV Completo (3-5 Págs)
+          </button>
+          <button
+            onClick={() => setCvType('ejecutivo')}
+            className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+              cvType === 'ejecutivo'
+                ? 'bg-zinc-800 text-brand-sky'
+                : 'text-zinc-500 hover:text-zinc-300'
+            }`}
+          >
+            CV Ejecutivo (2 Págs)
+          </button>
+        </div>
 
         <button
           onClick={handlePrint}
@@ -102,7 +140,7 @@ const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
             Experiencia Laboral
           </h3>
           <div className="space-y-8">
-            {experienceData.items.map((item) => (
+            {displayedExperiences.map((item) => (
               <article key={item.id} className="page-break-avoid">
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
                   <h4 className="text-base font-bold text-white print:text-slate-900">
@@ -163,7 +201,7 @@ const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
             Educación y Certificaciones
           </h3>
           <div className="space-y-4">
-            {educationData.items.map((item) => (
+            {displayedEducation.map((item) => (
               <article key={item.id} className="page-break-avoid flex justify-between items-start gap-4">
                 <div>
                   <h4 className="text-sm font-bold text-white print:text-slate-900">
