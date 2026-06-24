@@ -14,6 +14,8 @@ export interface AboutData {
   sectionAccent: string
   /** Array of biography paragraphs */
   biography: string[]
+  /** Concise professional profile summary for CV */
+  cvSummary?: string
   /** Key skills/strengths to highlight visually */
   highlights: SkillHighlight[]
   /** Path or URL to the profile photo */

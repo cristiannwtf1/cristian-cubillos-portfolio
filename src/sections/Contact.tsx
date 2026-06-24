@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import * as LucideIcons from 'lucide-react'
 import { contactData } from '@/data'
+import { IconRenderer, SectionHeader } from '@/components'
 
 const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -12,20 +12,63 @@ const Contact: React.FC = () => {
   })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  const [validationError, setValidationError] = useState<string | null>(null)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  const validateForm = () => {
+    if (formData.name.trim().length < 2) {
+      return 'El nombre debe tener al menos 2 caracteres.'
+    }
+    if (formData.name.trim().length > 100) {
+      return 'El nombre no debe exceder los 100 caracteres.'
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email.trim())) {
+      return 'Por favor, ingresa un correo electrónico válido.'
+    }
+    if (formData.email.trim().length > 150) {
+      return 'El correo no debe exceder los 150 caracteres.'
+    }
+    if (formData.subject.trim().length > 150) {
+      return 'El asunto no debe exceder los 150 caracteres.'
+    }
+    if (formData.message.trim().length < 10) {
+      return 'El mensaje debe tener al menos 10 caracteres.'
+    }
+    if (formData.message.trim().length > 2000) {
+      return 'El mensaje no debe exceder los 2000 caracteres.'
+    }
+    // Prevent basic HTML/Script injection attacks
+    const htmlPattern = /<[^>]*>/
+    if (
+      htmlPattern.test(formData.name) || 
+      htmlPattern.test(formData.subject) || 
+      htmlPattern.test(formData.message)
+    ) {
+      return 'No se permite el uso de etiquetas HTML en los campos.'
+    }
+    return null
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setValidationError(null)
+    
+    const error = validateForm()
+    if (error) {
+      setValidationError(error)
+      return
+    }
+
     setIsSubmitting(true)
     setSubmitStatus('idle')
 
     try {
       if (contactData.formActionUrl) {
-        // Real Formspree / API HTTP POST request
         const response = await fetch(contactData.formActionUrl, {
           method: 'POST',
           headers: {
@@ -33,10 +76,10 @@ const Contact: React.FC = () => {
             Accept: 'application/json',
           },
           body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            _subject: formData.subject,
-            message: formData.message,
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            _subject: formData.subject.trim(),
+            message: formData.message.trim(),
           }),
         })
 
@@ -47,75 +90,47 @@ const Contact: React.FC = () => {
           setSubmitStatus('error')
         }
       } else {
-        // Fallback simulate API form submission delay
+        // Fallback simulation
         await new Promise((resolve) => setTimeout(resolve, 1500))
-        console.log('Formulario de contacto enviado (simulado):', formData)
         setSubmitStatus('success')
         setFormData({ name: '', email: '', subject: '', message: '' })
       }
-    } catch (err) {
+    } catch {
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
     }
   }
 
-  // Helper to dynamically render contact method icons
-  const renderMethodIcon = (iconName: string) => {
-    const IconComponent = (LucideIcons as any)[iconName]
-    return IconComponent ? <IconComponent className="h-6 w-6 text-emerald-400 group-hover:scale-110 transition-transform" /> : null
-  }
-
   return (
     <section 
       id="contact" 
       aria-labelledby="contact-title" 
-      className="py-24 bg-zinc-950 relative overflow-hidden"
+      className="py-24 bg-bg-deep relative overflow-hidden border-t border-zinc-900"
     >
-      {/* Dynamic background blur glow */}
-      <div className="absolute bottom-1/4 left-10 w-80 h-80 bg-emerald-500/5 rounded-full blur-3xl -z-10" />
-
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Section Title */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6 }}
-            id="contact-title"
-            className="text-3xl sm:text-5xl font-bold tracking-tight mb-4"
-          >
-            {contactData.sectionTitle}{' '}
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-              {contactData.sectionAccent}
-            </span>
-          </motion.h2>
-          <div className="w-16 h-1 bg-emerald-500 mx-auto mb-6 rounded-full" />
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-zinc-400 text-base sm:text-lg leading-relaxed"
-          >
-            {contactData.description}
-          </motion.p>
-        </div>
+        <SectionHeader
+          id="contact-title"
+          title={contactData.sectionTitle}
+          accent={contactData.sectionAccent}
+          description={contactData.description}
+          className="text-center max-w-3xl mx-auto mb-20"
+        />
 
-        {/* Form & Connections Layout Container */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch contact-container">
+        {/* Layout Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch max-w-5xl mx-auto">
           
-          {/* Left Column: Direct Connections */}
+          {/* Direct channels */}
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-100px' }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:col-span-5 flex flex-col justify-between gap-6 contact-methods"
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-5 flex flex-col justify-between gap-4"
           >
-            <div className="space-y-6">
+            <div className="space-y-3">
               {contactData.methods.map((method) => (
                 <a
                   key={method.type}
@@ -123,16 +138,16 @@ const Contact: React.FC = () => {
                   id={`contact-method-${method.type}`}
                   target={method.type !== 'email' ? '_blank' : undefined}
                   rel="noopener noreferrer"
-                  className="flex items-center gap-5 p-5 rounded-2xl border border-zinc-800/80 bg-zinc-900/30 hover:bg-zinc-900/50 hover:border-emerald-500/20 hover:scale-[1.02] transition-all duration-300 group shadow-md"
+                  className="flex items-center gap-4 p-4 rounded-xl border border-zinc-900 bg-zinc-900/10 hover:border-zinc-800 hover:bg-zinc-900/20 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-zinc-950 border border-zinc-850 flex items-center justify-center group-hover:border-emerald-500/30 transition-colors">
-                    {renderMethodIcon(method.icon)}
+                  <div className="w-10 h-10 rounded-lg bg-zinc-950 border border-zinc-900 flex items-center justify-center text-brand-sky group-hover:scale-105 transition-transform">
+                    <IconRenderer name={method.icon} className="h-5 w-5" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">
+                    <h4 className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">
                       {method.label}
                     </h4>
-                    <p className="text-base font-bold text-white mt-1 group-hover:text-emerald-400 transition-colors font-display break-all">
+                    <p className="text-sm font-semibold text-white mt-0.5 group-hover:text-brand-sky transition-colors font-display break-all">
                       {method.value}
                     </p>
                   </div>
@@ -140,28 +155,34 @@ const Contact: React.FC = () => {
               ))}
             </div>
 
-            {/* Extra callout box */}
-            <div className="p-6 rounded-2xl border border-zinc-850 bg-zinc-950/60 flex flex-col justify-center">
-              <h5 className="text-sm font-bold text-white mb-2 font-display">¿Quieres agilizar procesos?</h5>
-              <p className="text-xs text-zinc-400 leading-relaxed">
-                Escríbeme si buscas soluciones en integraciones de software, APIs robustas y automatizaciones para liberar tiempo operativo en tu organización.
+            {/* Business callout */}
+            <div className="p-5 rounded-xl border border-zinc-900 bg-zinc-900/5">
+              <h5 className="text-xs font-bold text-white mb-1.5 font-display uppercase tracking-wider text-brand-sky">¿Listo para automatizar?</h5>
+              <p className="text-xs text-zinc-400 leading-relaxed font-sans">
+                Contáctame si buscas optimizar tu flujo operativo, conectar APIs (Meta WhatsApp API, Alegra ERP, CRMs) y diseñar interfaces que potencien tu negocio.
               </p>
             </div>
           </motion.div>
 
-          {/* Right Column: Premium Contact Form */}
+          {/* Form */}
           {contactData.showForm && (
             <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-100px' }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="lg:col-span-7 p-8 rounded-3xl border border-zinc-800 bg-zinc-900/30 shadow-xl shadow-black/10"
+              transition={{ duration: 0.5, delay: 0.05 }}
+              className="lg:col-span-7 p-6 sm:p-8 rounded-2xl border border-zinc-900 bg-zinc-900/10"
             >
-              <form onSubmit={handleSubmit} className="space-y-6" id="contact-form">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-4" id="contact-form">
+                {validationError && (
+                  <div className="p-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-xs font-semibold text-rose-400 font-sans">
+                    {validationError}
+                  </div>
+                )}
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="contact-name" className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                    <label htmlFor="contact-name" className="block text-[10px] font-bold text-zinc-550 uppercase tracking-wider mb-1.5 font-display">
                       Nombre Completo
                     </label>
                     <input
@@ -171,12 +192,13 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      maxLength={100}
                       placeholder="Ej. Juan Pérez"
-                      className="w-full px-4 py-3 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-200 text-sm placeholder-zinc-600 focus:outline-none focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/80 transition-all"
+                      className="w-full px-4 py-2.5 rounded-xl border border-zinc-900 bg-zinc-950/60 text-slate-100 text-sm placeholder-zinc-650 focus:outline-none focus:border-brand-sky/60 focus:ring-1 focus:ring-brand-sky/60 transition-all font-sans"
                     />
                   </div>
                   <div>
-                    <label htmlFor="contact-email" className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                    <label htmlFor="contact-email" className="block text-[10px] font-bold text-zinc-550 uppercase tracking-wider mb-1.5 font-display">
                       Correo Electrónico
                     </label>
                     <input
@@ -186,14 +208,15 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      maxLength={150}
                       placeholder="ejemplo@correo.com"
-                      className="w-full px-4 py-3 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-200 text-sm placeholder-zinc-600 focus:outline-none focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/80 transition-all"
+                      className="w-full px-4 py-2.5 rounded-xl border border-zinc-900 bg-zinc-950/60 text-slate-100 text-sm placeholder-zinc-650 focus:outline-none focus:border-brand-sky/60 focus:ring-1 focus:ring-brand-sky/60 transition-all font-sans"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="contact-subject" className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                  <label htmlFor="contact-subject" className="block text-[10px] font-bold text-zinc-550 uppercase tracking-wider mb-1.5 font-display">
                     Asunto
                   </label>
                   <input
@@ -203,13 +226,14 @@ const Contact: React.FC = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
+                    maxLength={150}
                     placeholder="Integración de Sistemas, Propuesta de Trabajo..."
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-200 text-sm placeholder-zinc-600 focus:outline-none focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/80 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl border border-zinc-900 bg-zinc-950/60 text-slate-100 text-sm placeholder-zinc-650 focus:outline-none focus:border-brand-sky/60 focus:ring-1 focus:ring-brand-sky/60 transition-all font-sans"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="contact-message" className="block text-xs font-bold text-zinc-400 uppercase tracking-wider mb-2">
+                  <label htmlFor="contact-message" className="block text-[10px] font-bold text-zinc-550 uppercase tracking-wider mb-1.5 font-display">
                     Mensaje
                   </label>
                   <textarea
@@ -218,19 +242,20 @@ const Contact: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    rows={5}
+                    rows={4}
+                    maxLength={2000}
                     placeholder="Hola Cristian, me gustaría conversar contigo sobre..."
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-800 bg-zinc-950 text-zinc-200 text-sm placeholder-zinc-600 focus:outline-none focus:border-emerald-500/80 focus:ring-1 focus:ring-emerald-500/80 transition-all"
+                    className="w-full px-4 py-2.5 rounded-xl border border-zinc-900 bg-zinc-950/60 text-slate-100 text-sm placeholder-zinc-650 focus:outline-none focus:border-brand-sky/60 focus:ring-1 focus:ring-brand-sky/60 transition-all font-sans"
                   />
                 </div>
 
-                {/* Submit button / feedback message */}
+                {/* Submit button / status feedback */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
                   <button
                     type="submit"
                     disabled={isSubmitting}
                     id="contact-submit-btn"
-                    className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-zinc-950 font-bold tracking-wide hover:from-emerald-400 hover:to-teal-400 transition-all duration-300 hover:scale-[1.02] shadow-lg shadow-emerald-500/20 disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-2 cursor-pointer"
+                    className="px-6 py-3 rounded-xl bg-brand-sky hover:bg-sky-300 text-zinc-950 font-bold transition-all disabled:opacity-50 disabled:scale-100 flex items-center justify-center gap-2 cursor-pointer shadow-md shadow-sky-500/5 text-sm"
                   >
                     {isSubmitting ? (
                       <>
@@ -247,12 +272,12 @@ const Contact: React.FC = () => {
 
                   {/* Status displays */}
                   {submitStatus === 'success' && (
-                    <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-xl">
+                    <span className="text-xs font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3 py-1.5 rounded-lg font-sans">
                       ¡Mensaje enviado con éxito!
                     </span>
                   )}
                   {submitStatus === 'error' && (
-                    <span className="text-xs font-semibold text-rose-400 bg-rose-500/10 border border-rose-500/20 px-4 py-2 rounded-xl">
+                    <span className="text-xs font-semibold text-rose-400 bg-rose-500/10 border border-rose-500/20 px-3 py-1.5 rounded-lg font-sans">
                       Hubo un error, por favor intenta de nuevo.
                     </span>
                   )}

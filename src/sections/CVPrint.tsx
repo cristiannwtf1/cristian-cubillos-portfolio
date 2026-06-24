@@ -1,6 +1,6 @@
 import React from 'react'
-import { ArrowLeft, Printer, Mail, Linkedin, Github, Phone, Globe } from 'lucide-react'
-import { aboutData, experienceData, contactData, techStackData } from '@/data'
+import { aboutData, experienceData, contactData, techStackData, educationData, projectsData } from '@/data'
+import { IconRenderer } from '@/components'
 
 interface CVPrintProps {
   onBack: () => void
@@ -26,7 +26,7 @@ const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
           onClick={onBack}
           className="flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-950 border border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700 transition-all text-sm font-semibold"
         >
-          <ArrowLeft className="h-4 w-4" />
+          <IconRenderer name="ArrowLeft" className="h-4 w-4" />
           <span>Volver al Portafolio</span>
         </button>
 
@@ -34,7 +34,7 @@ const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
           onClick={handlePrint}
           className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold transition-all text-sm shadow-lg shadow-emerald-500/10 cursor-pointer"
         >
-          <Printer className="h-4 w-4" />
+          <IconRenderer name="Printer" className="h-4 w-4 text-zinc-950" />
           <span>Guardar PDF / Imprimir</span>
         </button>
       </div>
@@ -45,32 +45,42 @@ const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
         {/* Header layout */}
         <header className="border-b border-zinc-800/80 pb-8 mb-8 print:border-slate-200">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-white print:text-slate-900 tracking-tight font-display">
-                Cristian Cubillos
-              </h1>
-              <h2 className="text-lg sm:text-xl font-bold text-emerald-400 mt-2 font-display">
-                Ingeniero de Sistemas · Full Stack & Integration Specialist
-              </h2>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-5">
+              {/* Photo */}
+              <div className="w-20 h-20 sm:w-24 sm:h-24 shrink-0 rounded-2xl border border-zinc-800 bg-zinc-950 p-1 overflow-hidden print:border-slate-200 shadow-lg">
+                <img
+                  src={aboutData.photoSrc}
+                  alt={aboutData.photoAlt}
+                  className="w-full h-full object-cover rounded-xl bg-zinc-900"
+                />
+              </div>
+              <div>
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-white print:text-slate-900 tracking-tight font-display">
+                  Cristian Cubillos
+                </h1>
+                <h2 className="text-base sm:text-lg font-bold text-emerald-400 mt-1 font-display">
+                  Full Stack Developer | Enterprise Software & Integrations
+                </h2>
+              </div>
             </div>
             
             {/* Contact details */}
             <div className="space-y-2 text-xs sm:text-sm text-zinc-400 print:text-slate-600">
               <div className="flex items-center gap-2 justify-end print:justify-start">
                 <span>{getContactVal('email')}</span>
-                <Mail className="h-4 w-4 text-emerald-400 print:text-slate-700" />
+                <IconRenderer name="Mail" className="h-4 w-4" />
               </div>
               <div className="flex items-center gap-2 justify-end print:justify-start">
                 <span>{getContactVal('phone')}</span>
-                <Phone className="h-4 w-4 text-emerald-400 print:text-slate-700" />
+                <IconRenderer name="Phone" className="h-4 w-4" />
               </div>
               <div className="flex items-center gap-2 justify-end print:justify-start">
                 <span>linkedin.com/in/criscubillos</span>
-                <Linkedin className="h-4 w-4 text-emerald-400 print:text-slate-700" />
+                <IconRenderer name="Linkedin" className="h-4 w-4" />
               </div>
               <div className="flex items-center gap-2 justify-end print:justify-start">
                 <span>github.com/cristiannwtf1</span>
-                <Github className="h-4 w-4 text-emerald-400 print:text-slate-700" />
+                <IconRenderer name="Github" className="h-4 w-4" />
               </div>
             </div>
           </div>
@@ -82,7 +92,7 @@ const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
             Perfil Profesional
           </h3>
           <p className="text-zinc-300 print:text-slate-700 text-sm sm:text-base leading-relaxed">
-            {aboutData.biography[0]} {aboutData.biography[1]}
+            {aboutData.cvSummary || `${aboutData.biography[0]} ${aboutData.biography[1]}`}
           </p>
         </section>
 
@@ -115,6 +125,57 @@ const CVPrint: React.FC<CVPrintProps> = ({ onBack }) => {
                     </li>
                   ))}
                 </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Featured Projects */}
+        <section className="mb-8">
+          <h3 className="text-lg font-bold font-display text-white print:text-slate-900 uppercase tracking-wider mb-6 border-l-4 border-emerald-500 pl-3">
+            Proyectos Destacados
+          </h3>
+          <div className="space-y-6">
+            {projectsData.projects.filter(p => p.featured).slice(0, 3).map((project) => (
+              <article key={project.id} className="page-break-avoid">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 mb-2">
+                  <h4 className="text-base font-bold text-white print:text-slate-900">
+                    {project.name}
+                  </h4>
+                  <span className="text-xs font-semibold text-emerald-400 print:text-slate-700">
+                    {project.status === 'completed' ? 'Completado' : 'En Desarrollo'}
+                  </span>
+                </div>
+                <p className="text-sm text-zinc-300 print:text-slate-700 mb-2 leading-relaxed">
+                  {project.longDescription || project.description}
+                </p>
+                <div className="text-xs text-zinc-400 print:text-slate-500 font-semibold">
+                  Tecnologías: {project.technologies.join(', ')}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        {/* Education & Certifications */}
+        <section className="mb-8">
+          <h3 className="text-lg font-bold font-display text-white print:text-slate-900 uppercase tracking-wider mb-6 border-l-4 border-emerald-500 pl-3">
+            Educación y Certificaciones
+          </h3>
+          <div className="space-y-4">
+            {educationData.items.map((item) => (
+              <article key={item.id} className="page-break-avoid flex justify-between items-start gap-4">
+                <div>
+                  <h4 className="text-sm font-bold text-white print:text-slate-900">
+                    {item.degree}
+                  </h4>
+                  <span className="text-xs text-zinc-400 print:text-slate-600 block mt-0.5">
+                    {item.institution} {item.location && `· ${item.location}`}
+                  </span>
+                </div>
+                <span className="text-xs font-semibold text-emerald-400 print:text-slate-700 shrink-0">
+                  {item.year}
+                </span>
               </article>
             ))}
           </div>

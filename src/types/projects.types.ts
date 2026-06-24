@@ -41,6 +41,10 @@ export interface Project {
   featured: boolean
   /** External links (GitHub, live demo, etc.) */
   links: ProjectLink[]
+  /** Optional case study fields */
+  problemSolved?: string
+  architecture?: string
+  modules?: string[]
   /** Optional cover image path */
   imageSrc?: string
   /** Image alt text */

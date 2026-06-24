@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
 import { aboutData } from '@/data'
+import { SectionHeader } from '@/components'
 
 const About: React.FC = () => {
+  const [imageError, setImageError] = useState(false)
+
   return (
     <section 
       id="about" 
@@ -11,21 +14,11 @@ const About: React.FC = () => {
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Section title */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 id="about-title" className="text-3xl sm:text-5xl font-bold tracking-tight">
-            {aboutData.sectionTitle}{' '}
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
-              {aboutData.sectionAccent}
-            </span>
-          </h2>
-          <div className="w-16 h-1 bg-emerald-500 mx-auto mt-4 rounded-full" />
-        </motion.div>
+        <SectionHeader
+          id="about-title"
+          title={aboutData.sectionTitle}
+          accent={aboutData.sectionAccent}
+        />
 
         {/* Content grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -57,23 +50,20 @@ const About: React.FC = () => {
                 <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-transparent z-10 opacity-60 pointer-events-none" />
                 
                 {/* Fallback image using a sleek placeholder if the photo isn't available */}
-                <img
-                  src={aboutData.photoSrc}
-                  alt={aboutData.photoAlt}
-                  id="about-profile-photo"
-                  className="w-full h-full object-cover rounded-2xl bg-zinc-900 group-hover:scale-105 transition-transform duration-500"
-                  onError={(e) => {
-                    // Fallback to high-tech gradient circle if image load fails
-                    e.currentTarget.style.display = 'none'
-                    const parent = e.currentTarget.parentElement
-                    if (parent) {
-                      const placeholder = document.createElement('div')
-                      placeholder.className = 'w-full h-full rounded-2xl bg-gradient-to-br from-zinc-850 to-zinc-950 flex flex-col items-center justify-center text-emerald-400 font-display font-semibold'
-                      placeholder.innerHTML = `<span class="text-5xl font-extrabold tracking-wider">CC</span><span class="text-xs text-zinc-500 mt-2">Full Stack Developer</span>`
-                      parent.appendChild(placeholder)
-                    }
-                  }}
-                />
+                {imageError ? (
+                  <div className="w-full h-full rounded-2xl bg-gradient-to-br from-zinc-900 to-zinc-950 flex flex-col items-center justify-center text-emerald-400 font-display font-semibold">
+                    <span className="text-5xl font-extrabold tracking-wider">CC</span>
+                    <span className="text-xs text-zinc-500 mt-2">Full Stack Developer</span>
+                  </div>
+                ) : (
+                  <img
+                    src={aboutData.photoSrc}
+                    alt={aboutData.photoAlt}
+                    id="about-profile-photo"
+                    className="w-full h-full object-cover rounded-2xl bg-zinc-900 group-hover:scale-105 transition-transform duration-500 animate-fade-in"
+                    onError={() => setImageError(true)}
+                  />
+                )}
               </div>
             </motion.div>
           </div>

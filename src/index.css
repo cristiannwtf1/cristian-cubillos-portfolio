@@ -4,66 +4,78 @@
   --font-sans: 'Inter', sans-serif;
   --font-display: 'Outfit', sans-serif;
 
-  /* Custom Glow/Neon Accents */
-  --color-brand-cyan: #22d3ee;
-  --color-brand-emerald: #34d399;
-  --color-brand-violet: #a78bfa;
+  /* Premium Slate/Sky Palette (Linear & Vercel Inspired) */
+  --color-brand-sky: #38bdf8;
+  --color-bg-deep: #0b0f19;
+  --color-surface-card: #111827;
+  --color-surface-hover: #1f2937;
+  --color-border-subtle: rgba(248, 250, 252, 0.08); /* F8FAFC with 8% opacity */
+  --color-border-focus: rgba(56, 189, 248, 0.3); /* sky-400 with 30% opacity */
 
-  /* Custom Transitions & Timings */
-  --transition-premium: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-premium: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Base custom styles to provide a highly polished foundation */
 @layer base {
   html {
     scroll-behavior: smooth;
     font-family: var(--font-sans);
+    background-color: var(--color-bg-deep);
+    color: #f1f5f9; /* slate-100 */
+  }
+
+  body {
+    background-color: var(--color-bg-deep);
+    color: #f1f5f9;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 700;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
+    color: #f8fafc;
+  }
+
+  /* Thin grid line styling */
+  hr {
+    border: 0;
+    border-top: 1px solid var(--color-border-subtle);
   }
 
   /* Custom scrollbar matching dark premium theme */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
-    background: #09090b; /* zinc-950 */
+    background: #0b0f19;
   }
   ::-webkit-scrollbar-thumb {
-    background: #27272a; /* zinc-800 */
-    border-radius: 4px;
+    background: #1f2937;
+    border-radius: 9999px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #3f3f46; /* zinc-700 */
+    background: #374151;
   }
 }
 
-/* Custom premium styles */
 @layer utilities {
-  .text-glow-cyan {
-    text-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
-  }
-  
-  .text-glow-emerald {
-    text-shadow: 0 0 20px rgba(52, 211, 153, 0.3);
-  }
-
-  .border-glow-emerald {
-    box-shadow: 0 0 15px rgba(52, 211, 153, 0.15);
-  }
-
   .bg-glass {
-    background-color: rgba(9, 9, 11, 0.75); /* zinc-950/75 */
+    background-color: rgba(11, 15, 25, 0.8);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
   }
   
   .border-glass {
-    border-color: rgba(63, 63, 70, 0.4); /* zinc-700/40 */
+    border-color: rgba(248, 250, 252, 0.08);
+  }
+
+  /* Subtly animated gradient border highlight */
+  .border-highlight-hover {
+    transition: var(--transition-premium);
+  }
+  .border-highlight-hover:hover {
+    border-color: rgba(56, 189, 248, 0.25);
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.03);
   }
 }
 
@@ -80,13 +92,13 @@
   body {
     background: #ffffff !important;
     color: #0f172a !important; /* slate-900 */
-    font-size: 12pt !important;
-    line-height: 1.5 !important;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
   }
 
   /* Ajustar márgenes de página */
   @page {
-    margin: 1.5cm;
+    margin: 1.2cm;
   }
 
   /* Asegurar que las tarjetas e hitos no se corten en mitad de página */
@@ -101,8 +113,8 @@
   }
 
   /* Forzar que los textos grises sean legibles al imprimir */
-  .text-zinc-400, .text-zinc-500, .text-zinc-600 {
-    color: #475569 !important; /* slate-600 */
+  .text-zinc-400, .text-zinc-500, .text-zinc-600, .text-zinc-300 {
+    color: #334155 !important; /* slate-700 */
   }
 
   /* Asegurar que los encabezados destaquen bien en papel */

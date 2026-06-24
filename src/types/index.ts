@@ -33,3 +33,5 @@ export type {
   ContactMethod,
 } from './contact.types'
 export type { FooterData, FooterLink } from './footer.types'
+export type { EducationItem, EducationData } from './education.types'
+

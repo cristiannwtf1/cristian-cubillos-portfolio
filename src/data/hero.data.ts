@@ -3,15 +3,15 @@ import type { HeroData } from '@/types'
 export const heroData: HeroData = {
   greeting: 'Hola, soy',
   name: 'Cristian Cubillos',
-  title: 'Ingeniero de Sistemas',
-  subtitle: 'Full Stack Developer · Automatización e Integración de Sistemas',
-  description:
-    'Especializado en diseñar arquitecturas de integración y automatizar tareas operativas complejas. Desarrollador de herramientas como voximplant-tools, motores lógicos e interfaces web empresariales.',
+  title: 'Ingeniero de Sistemas | Full Stack Developer',
+  subtitle: 'Construyo plataformas empresariales, automatizaciones e integraciones que transforman procesos complejos en soluciones reales.',
+  description: '',
   ctaLabel: 'Ver proyectos',
   ctaHref: '#projects',
-  secondaryCtaLabel: 'Contáctame',
-  secondaryCtaHref: '#contact',
-  cvUrl: '#cv', // Cambiado para navegar a la nueva Hoja de Vida interactiva
+  secondaryCtaLabel: 'Descargar CV',
+  secondaryCtaHref: '#cv',
+  cvUrl: '#cv',
+  highlightedTechs: ['Python', 'FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'Meta API'],
   socialLinks: [
     {
       platform: 'GitHub',

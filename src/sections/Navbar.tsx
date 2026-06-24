@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import * as LucideIcons from 'lucide-react'
 import { navData, heroData } from '@/data'
+import { IconRenderer } from '@/components'
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -28,12 +28,6 @@ const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  // Dynamic icon helper to avoid dependency caching issues
-  const renderIcon = (iconName: string, className: string = "h-5 w-5") => {
-    const IconComponent = (LucideIcons as any)[iconName]
-    return IconComponent ? <IconComponent className={className} /> : null
-  }
 
   return (
     <motion.header
@@ -91,7 +85,7 @@ const Navbar: React.FC = () => {
               download={heroData.cvUrl.endsWith('.pdf') ? true : undefined}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-zinc-800 bg-zinc-900/50 hover:bg-emerald-500/10 text-zinc-300 hover:text-emerald-400 hover:border-emerald-500/20 text-xs font-semibold transition-all duration-200"
             >
-              {renderIcon('Download', 'h-3.5 w-3.5')}
+              <IconRenderer name="Download" className="h-3.5 w-3.5" />
               <span>CV</span>
             </a>
           )}
@@ -105,7 +99,7 @@ const Navbar: React.FC = () => {
           aria-label="Abrir menú"
           id="mobile-menu-trigger"
         >
-          {isOpen ? renderIcon('X') : renderIcon('Menu')}
+          {isOpen ? <IconRenderer name="X" /> : <IconRenderer name="Menu" />}
         </button>
       </div>
 
@@ -145,7 +139,7 @@ const Navbar: React.FC = () => {
                   className="flex items-center justify-center gap-2 py-3 px-4 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-emerald-400 text-base font-medium transition-colors"
                   onClick={() => setIsOpen(false)}
                 >
-                  {renderIcon('Download', 'h-4 w-4')}
+                  <IconRenderer name="Download" className="h-4 w-4" />
                   <span>Descargar Hoja de Vida</span>
                 </a>
               )}

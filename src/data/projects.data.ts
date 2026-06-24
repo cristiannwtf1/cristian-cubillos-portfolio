@@ -2,19 +2,30 @@ import type { ProjectsData } from '@/types'
 
 export const projectsData: ProjectsData = {
   sectionTitle: 'Proyectos',
-  sectionAccent: 'destacados',
+  sectionAccent: 'empresariales',
   description:
-    'Sistemas empresariales complejos, integraciones de API de terceros y flujos de automatización que demuestran capacidades Full Stack y diseño de arquitectura.',
+    'Casos de estudio detallados de sistemas en producción, motores lógicos y soluciones de integración construidos para resolver problemas de negocio reales.',
   projects: [
     {
       id: 'proj-goodnight',
       name: 'GoodNight Business Hub',
       description:
-        'Plataforma integral empresarial diseñada para centralizar y automatizar los procesos comerciales, administrativos, de nómina y operativos en producción.',
+        'Plataforma modular centralizada desarrollada para orquestar la operación comercial, administrativa y de talento de la corporación.',
       longDescription:
-        'Una solución empresarial robusta desarrollada en React y FastAPI. Integra módulos operativos clave: Comercial (ventas reales mediante Meta WhatsApp Cloud API), RRHH (directorio e importación de bases de datos), Nómina (cálculos automatizados de asistencia y quincenas) y Biblioteca Operativa. Cuenta con un espejo local de facturación sincronizado con Alegra ERP y seguridad por cifrado simétrico Fernet para las claves de API.',
+        'Una solución empresarial robusta que actúa como el núcleo operativo de la organización. Integra de forma nativa la facturación, los canales de mensajería con clientes y los motores de asistencia de personal en producción.',
+      problemSolved:
+        'La dispersión de información y tareas manuales repetitivas en múltiples plataformas no conectadas (WhatsApp, Alegra, registros de asistencia físicos) generaba cuellos de botella y errores operativos. GoodNight Hub centraliza estas operaciones y automatiza flujos, erradicando tiempos muertos.',
+      architecture:
+        'Arquitectura modular basada en microservicios backend en FastAPI, interfaz responsiva interactiva con React, almacenamiento persistente en PostgreSQL con replicación/espejo local sincronizado, empaquetado en contenedores Docker y despliegue CI/CD automatizado.',
+      modules: [
+        'Comercial (Integración WhatsApp Cloud API & Ventas)',
+        'RRHH (Ficha y Registro de Empleados)',
+        'Nómina (Cálculos de Asistencia y Quincenas)',
+        'Biblioteca Operativa (Manuales y Guías corporativas)',
+        'Gestión Documental (Almacenamiento Seguro)',
+      ],
       tags: ['Full Stack', 'Enterprise', 'Integration', 'DevOps'],
-      technologies: ['React', 'FastAPI', 'PostgreSQL', 'Docker', 'Meta WhatsApp API', 'Alegra API', 'GitHub Actions', 'Fernet Cryptography'],
+      technologies: ['React', 'FastAPI', 'PostgreSQL', 'Docker', 'Meta WhatsApp API', 'Alegra API', 'GitHub Actions'],
       status: 'completed',
       featured: true,
       links: [
@@ -31,11 +42,22 @@ export const projectsData: ProjectsData = {
       id: 'proj-devage',
       name: 'DevAge Engine',
       description:
-        'Motor de simulación estratégica en tiempo real desarrollado como proyecto personal. Implementa arquitectura ECS e inteligencia artificial.',
+        'Motor de simulación y lógica estratégica en tiempo real desarrollado para simular comportamientos autónomos y toma de decisiones.',
       longDescription:
-        'Un motor interactivo inspirado en mecánicas estratégicas secuenciales (Age of Code) para desarrolladores. Implementa una arquitectura Entity Component System (ECS), algoritmos avanzados de inteligencia artificial, pathfinding para navegación en mapa de cuadrícula y comunicación bidireccional por WebSockets.',
+        'Proyecto personal orientado a arquitectura de software y simulación de sistemas complejos. Implementa arquitectura ECS para manejo de múltiples agentes autónomos sin sobrecargar el hilo principal.',
+      problemSolved:
+        'Diseñar un sistema de simulación interactivo eficiente capaz de procesar múltiples entidades con inteligencia artificial y navegación autónoma en tiempo real sin degradación de rendimiento.',
+      architecture:
+        'Basado en arquitectura ECS (Entity Component System) para desacoplar estados y lógica, algoritmos de Pathfinding (búsqueda de rutas en rejillas), WebSockets bidireccionales en tiempo real y renderizado en Canvas de HTML5.',
+      modules: [
+        'ECS Architecture (Entity Component System)',
+        'IA & Decision Making',
+        'Pathfinding Algorithms',
+        'WebSockets Realtime Communication',
+        'Simulación en tiempo real',
+      ],
       tags: ['Frontend', 'JavaScript', 'Logic'],
-      technologies: ['JavaScript', 'HTML5 Canvas', 'WebSockets', 'ECS Architecture', 'Algorithm Design', 'Pathfinding'],
+      technologies: ['JavaScript', 'HTML5 Canvas', 'WebSockets', 'ECS Architecture', 'Pathfinding Algorithms'],
       status: 'completed',
       featured: true,
       links: [
@@ -52,11 +74,21 @@ export const projectsData: ProjectsData = {
       id: 'proj-quickcollect',
       name: 'QuickCollect',
       description:
-        'Proyecto orientado a la automatización de procesos empresariales y optimización en la gestión y cobro de cartera de clientes.',
+        'Aplicación web orientada a la automatización e integración de cobro y conciliación rápida de cartera de clientes.',
       longDescription:
-        'Aplicación web diseñada con el fin de automatizar la gestión y conciliación de cartera de clientes pendientes, optimizando la comunicación de cobro y facilitando flujos de recaudación eficientes.',
+        'Aplicación web de backend y scripts diseñada para automatizar la gestión y conciliación de cartera de clientes pendientes, optimizando la comunicación de cobro y facilitando flujos de recaudación eficientes.',
+      problemSolved:
+        'La gestión manual de cobros y el seguimiento individual de clientes morosos aumentaban el índice de cartera vencida y requerían un esfuerzo operativo ineficiente.',
+      architecture:
+        'Integración directa con APIs de CRMs y bases de datos relacionales, scripts automatizados de procesamiento por lotes para facturas y conciliación de cartera.',
+      modules: [
+        'Automatización de Cobros',
+        'Gestión de Cartera de Clientes',
+        'Integración CRM',
+        'Optimización de Procesos',
+      ],
       tags: ['Full Stack', 'Automation', 'Enterprise'],
-      technologies: ['JavaScript', 'Node.js', 'Express', 'SQL Databases', 'HTML5/CSS3'],
+      technologies: ['Node.js', 'Express', 'SQL databases', 'Python Scripting', 'API Integration'],
       status: 'completed',
       featured: true,
       links: [

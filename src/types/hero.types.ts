@@ -32,6 +32,8 @@ export interface HeroData {
   secondaryCtaHref: string
   /** Optional URL for downloadable CV PDF */
   cvUrl?: string
+  /** Highlighted tech stack badges in the hero */
+  highlightedTechs?: string[]
   /** Social links displayed in the hero */
   socialLinks: SocialLink[]
 }

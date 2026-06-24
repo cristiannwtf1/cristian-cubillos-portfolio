@@ -10,3 +10,5 @@ export { projectsData } from './projects.data'
 export { techStackData } from './techstack.data'
 export { contactData } from './contact.data'
 export { footerData } from './footer.data'
+export { educationData } from './education.data'
+
